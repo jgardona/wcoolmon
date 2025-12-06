@@ -1,0 +1,17 @@
+[package]
+name = "wcoolmon"
+version = "0.1.0"
+edition = "2024"
+authors = ["Julio C B Gardona"]
+
+[dependencies]
+anyhow = "1.0.100"
+clap = { version = "4.5.53", features = ["derive"] }
+hidapi = "2.6.3"
+sysinfo = "0.37.2"
+
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+panic = "abort"
