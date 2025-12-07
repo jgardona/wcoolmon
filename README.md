@@ -20,7 +20,7 @@ Options:
 
 ```
 
-* You need to list your **HID Devies using lsusb** and indentify your cooler port.
+* You need to list your **HID Devices using lsusb** and indentify your cooler pid(product_id) and vid(vendor_id).
 ```bash
 ❯ lsusb
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
