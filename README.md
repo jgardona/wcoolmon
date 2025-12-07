@@ -6,7 +6,7 @@
 **Water Cooler Monitor** is a simple linux service to send temperature information in C⁰ to your water cooler display. Its build to fix the absence of software support for linux systems.
 
 * **How to use:** Using wcoolmon -h command line will print the help below with many command options.
-```bash
+```
 ❯ wcoolmon -h
 Usage: wcoolmon [OPTIONS]
 
@@ -19,6 +19,24 @@ Options:
   -V, --version                  Print version
 
 ```
+
+* You need to list your **HID Devies using lsusb** and indentify your cooler port.
+```bash
+❯ lsusb
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 001 Device 002: ID aa88:8666 东莞铭研电子科技 温度显示HID设备 **
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 003 Device 002: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
+Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 004 Device 002: ID 0bda:b82c Realtek Semiconductor Corp. 802.11ac NIC
+```
+
+After run wcoolmon with the necessary options options above and fill your vendor id and product id water cooler hardware:
+```bash
+❯ sudo wcoolmon -v<vendor_id> -p<product_id>
+```
+
 * **Installation:** First of all, you need to clone this repository and compile *wcoolmon*. Its a *Rust* application static contained, thats it, you dont need to care with dependencies at runtime (only in compile time).
   
 So, using *gh* github commandline, or git, just clone the repository:
