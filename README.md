@@ -59,18 +59,18 @@ Build the **release profile** version of this service. Its configured to be high
 ```
 The service template:
 ```shell
-   1   │ [Unit]
-   2   │ Description=Water Cooler Monitor
-   3   │ After=network.target
-   4   │ 
-   5   │ [Service]
-   6   │ Type=simple
-   7   │ ExecStart=/usr/local/bin/wcoolmon
-   8   │ Restart=always
-   9   │ User=root
-  10   │ 
-  11   │ [Install]
-  12   │ WantedBy=multi-user.target
+[Unit]
+Description=Water Cooler Monitor
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/wcoolmon
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
 ```
 - Update the systemctl service list, start the service and check the status.
 
