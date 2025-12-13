@@ -98,3 +98,8 @@ You must see something like this:
 Dec 07 16:38:28 fedora systemd[1]: Started wcoolmon.service - Water Cooler Monitor.
 Dec 07 16:38:28 fedora wcoolmon[1188]: Connected to Device: 8666
 ```
+- **Exemple:** Running on Mancer Water Cooler.
+
+<div align=center>
+<img src="img/exemplo.jpeg" width=50%/>
+</div>
