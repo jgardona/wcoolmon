@@ -52,6 +52,30 @@ Build the **release profile** version of this service. Its configured to be high
 
 1- **Installing the service:**
 
+- Monitor permissions: Its necessary to give the linux system permissions to access the device we found above. For that, we need to create a rule in the folder ***rules.d***, as we can see below.
+
+```bash
+sudo nano /etc/udev/rules.d/99-wcoolmon.rules
+```
+We have to write the following content to the file
+```
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="<Seu_IDVendor>", ATTRS{idProduct}=="<Seu_IDProduct>", MODE="0666", TAG+="uaccess"
+```
+
+**Important**
+
+- In Fedora, the user group I found to give permission to the device, is **uaccess**, but in another distribution, may have other name.
+
+- Executable permission:
+
+We need to show that the owner of the wcoolmon executable is root user, because root will be also the owner of the service. 
+
+```bash
+sudo restorecon -F -v ./wcoolmon 
+```
+
+Without the step above, the wcoolmon executable cant do IO in the cooler device.
+
 - Copy the wcoolmon executable to ``/usr/local/bin``.
 - Create a **systemd** in ``/etc/systemd/system/wcoolmon.service``
 ```bash
