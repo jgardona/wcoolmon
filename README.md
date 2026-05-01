@@ -5,6 +5,8 @@
 
 **Water Cooler Monitor** is a simple linux service to send temperature information in C⁰ to your water cooler display. Its build to fix the absence of software support for linux systems.
 
+``This tutorial was tested in Fedora distribution.``
+
 * **How to use:** Using wcoolmon -h command line will print the help below with many command options.
 ```
 ❯ wcoolmon -h
