@@ -33,16 +33,20 @@ fn get_cpu_temp(components: &Components) -> Option<f32> {
             let label = c.label().to_lowercase();
             label.contains(K10TEMP) || label.contains(TCTL) || label.contains(PACKAGE)
         })
-        .map(|c| c.temperature())?
+        .and_then(|c| c.temperature())
 }
 
 fn main() -> anyhow::Result<()> {
     let args = Args::parse();
     let api = HidApi::new().context("API HID failed to initialize")?;
-    let device = api.open(args.vendor_id, args.product_id).context(format!(
-        "Device {:04x}:{:04x} not found",
-        args.vendor_id, args.product_id
-    ))?;
+    let device = api
+        .open(args.vendor_id, args.product_id)
+        .with_context(|| {
+            format!(
+                "Device {:04x}:{:04x} not found",
+                args.vendor_id, args.product_id
+            )
+        })?;
     println!("Connected to Device: {:04x}", args.product_id);
     let mut components = Components::new_with_refreshed_list();
     loop {
@@ -57,11 +61,9 @@ fn main() -> anyhow::Result<()> {
                 }
             }
             Err(e) => {
-                eprintln!("I/O HID failure: {e}");
-                break;
+                return Err(e).context("I/O HID failure");
             }
         }
         thread::sleep(Duration::from_millis(args.interval));
     }
-    Ok(())
 }

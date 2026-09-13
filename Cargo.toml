@@ -8,10 +8,11 @@ authors = ["Julio C B Gardona"]
 anyhow = "1.0.100"
 clap = { version = "4.5.53", features = ["derive"] }
 hidapi = "2.6.3"
-sysinfo = "0.38.4"
+sysinfo = { version = "0.38.4", default-features = false, features = ["component"] }
 
 [profile.release]
 strip = true
 opt-level = "z"
 lto = true
 panic = "abort"
+codegen-units = 1
