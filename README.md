@@ -77,6 +77,7 @@ sudo restorecon -F -v ./wcoolmon
 ```
 
 Without the step above, the wcoolmon executable cant do IO in the cooler device.
+``Not necessary in ubuntu``.
 
 - Copy the wcoolmon executable to ``/usr/local/bin``.
 - Create a **systemd** in ``/etc/systemd/system/wcoolmon.service``
